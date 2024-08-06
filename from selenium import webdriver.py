@@ -55,4 +55,4 @@ except NoSuchElementException:
     print('tente novamente')
 sleep(2)
 
-
+puooo= 0
