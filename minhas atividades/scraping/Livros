@@ -5,6 +5,7 @@ from time import sleep
 
 chrome = webdriver.Chrome()
 chrome.get('https://books.toscrape.com/')
+'''
 titulo = chrome.find_element(By.XPATH,'/html/body/div/div/div/div/section/div[2]/ol/li[1]/article/h3/a')
 #print(titulo.get_attribute('title')) Aqui ele pega o titulo do link
 #print(titulo.get_attribute('href')) Aqui mostra o link no print
@@ -18,4 +19,11 @@ sleep(2)
 #volta a pagina do chrome
 chrome.back()
 sleep(3)
+'''
+livros = chrome.find_elements(By.XPATH,'//article[@class="product_pod"]')
 
+for livro in livros:
+    titulo = livro.find_element(By.XPATH, './h3/a')
+    print(titulo.get_attribute('title'))
+    
+sleep(3)
