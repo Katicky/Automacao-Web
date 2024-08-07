@@ -1,0 +1,21 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from time import sleep
+
+chrome = webdriver.Chrome()
+chrome.get('https://books.toscrape.com/')
+titulo = chrome.find_element(By.XPATH,'/html/body/div/div/div/div/section/div[2]/ol/li[1]/article/h3/a')
+#print(titulo.get_attribute('title')) Aqui ele pega o titulo do link
+#print(titulo.get_attribute('href')) Aqui mostra o link no print
+
+titulo.click()
+sleep(2)
+
+#titulo_especifico = chrome.find_element (By.XPATH,'/html/body/div/div/div[2]/div[2]/article/div[1]/div[2]/h1')
+#print(titulo_especifico.text) Aqui ele pega o titulo em str no site
+
+home = chrome.find_element(By.XPATH,'/html/body/header/div/div/div/a')
+home.click()
+sleep(3)
+
