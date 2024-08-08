@@ -11,3 +11,5 @@ while True:
 
     if event == pg.WIN_CLOSED:
         break
+
+    poi
