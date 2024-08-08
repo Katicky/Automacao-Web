@@ -1,5 +1,13 @@
 import PySimpleGUI as pg
 
 layout = [
-    [pg.]
+    [pg.Text('Hello world')]
 ]
+
+window = pg.Window('Primeiro Visual', layout)
+
+while True:
+    event, value = window.read()
+
+    if event == pg.WIN_CLOSED:
+        break
