@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from time import sleep
+import csv
 
 chrome = webdriver.Chrome()
 chrome.get('https://books.toscrape.com/')
@@ -22,8 +23,46 @@ sleep(3)
 '''
 livros = chrome.find_elements(By.XPATH,'//article[@class="product_pod"]')
 
+dados = [['Titulo', 'Preço', 'Estoque']]
+
 for livro in livros:
-    titulo = livro.find_element(By.XPATH, './h3/a')
-    print(titulo.get_attribute('title'))
+    titulo_link = livro.find_element(By.XPATH, './h3/a')
+    titulo_link.click()
     
-sleep(3)
+    titulo = chrome.find_element(By.TAG_NAME,'h1')
+    preco = chrome.find_element(By.XPATH,'//p[@class="price_color"]')
+    estoque = chrome.find_element(By.XPATH,'//p[@class="instock availability"]')
+   
+    print(titulo.text)
+    print(preco.text)
+    print(estoque.text.replace('In stock (', '').replace(' available)', ''))
+    
+    linha = [titulo.text, preco.text, estoque.text.replace('In stock (', '').replace(' available)', '')]
+    dados.append(linha)
+    
+    chrome.back()
+    sleep(1)
+
+with open('Livros.csv', mode='w', newline='') as meu_csv:
+    writer = csv.writer (meu_csv,delimer=';')
+    writer.writerows(dados)
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+'''
+    proximo = livro.find_element(By.XPATH, '/html/body/div/div/div/div/section/div[2]/div/ul/li[2]/a')
+    proximo.click()
+    input()
+    sleep(3)
+'''
