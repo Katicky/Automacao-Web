@@ -1,14 +1,23 @@
-import PySimpleGUI as pg
+import PySimpleGUI as ps
 
 layout = [
-    [pg.Text('Hello world')]
+    [ps.Text('Olá'), ps.Text('', key='print_nome')],
+    [ps.Text('Digite seu nome')],
+    [ps.Input(key='nome'),ps.Button('Testar')]
+    
 ]
 
-window = pg.Window('Primeiro Visual', layout)
+window = ps.Window('Primeiro Visual', layout)
 
 while True:
     event, value = window.read()
+    
+    if event == 'Testar':
+        window['print_nome'].update (value ['nome'])
+        window['teste'].update('Parabens')
+        print(value)
+        
 
-    if event == pg.WIN_CLOSED:
+    if event == ps.WIN_CLOSED:
         break
 

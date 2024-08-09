@@ -1,0 +1,60 @@
+import PySimpleGUI as ps
+
+layout = [
+    
+    [ps.Text('', size=(45,5))],
+    [ps.Text('', size=(45,5)), ps.Text('', key='resultado')],
+    [ps.Button('limpar', size=(31,5),p=(1,0,0,0)), ps.Button('', size=(10,5), p=(1,0,0,0))],
+    [ps.Button('7', size=(10,5), p=0),ps.Button('8', size=(10,5), p=0),ps.Button('9', size=(10,5), p=0),ps.Button('-', size=(10,5), p=0)],
+    [ps.Button('4', size=(10,5), p=0),ps.Button('5', size=(10,5), p=0),ps.Button('6', size=(10,5), p=0),ps.Button('+', size=(10,5), p=0)],
+    [ps.Button('1', size=(10,5), p=0),ps.Button('2', size=(10,5), p=0),ps.Button('3', size=(10,5), p=0),ps.Button('*', size=(10,5), p=0)],
+    [ps.Button('/', size=(10,5), p=0),ps.Button('%', size=(10,5), p=0),ps.Button(',', size=(10,5), p=0),ps.Button('=', size=(10,5), p=0)],
+    
+]
+
+
+window = ps.Window('Primeiro Visual', layout)
+n1 = ''
+n2 = ''
+op = ''
+while True:
+    
+    evento, valor = window.read()
+    
+    def soma(n1, n2):
+        return n1 + n2
+    
+    
+    if evento == ps.WIN_CLOSED:
+        break
+    
+    operadores = ['+', '*', '-', '/', '%', '=']
+    
+    if evento not in operadores and op == '':
+        n1 += evento
+        window['resultado'].update(n1)
+    elif evento in operadores and evento != '=':
+        op = evento
+        window['resultado'].update(op)
+    elif evento not in operadores and op != '':
+        n2 += evento
+        window['resultado'].update(n2)
+        
+
+    else:
+        n1 = float(n1)
+        n2 = float(n2)
+        if op == '+':
+            print (soma(n1,n2))
+print('calculei')
+print(n1)
+print(op)
+print(n2)               
+    
+    
+        
+            
+        
+        
+
+    
